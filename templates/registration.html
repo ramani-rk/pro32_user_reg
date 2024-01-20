@@ -4,17 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Registartion</title>
+    <style>
+        input
+        {
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <center>
-        <h1>User Registartion</h1>
-        <form method="POST">
+        <h1>User Registration</h1>
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
 
-                {{ufo.as_p}}
+            <br>    
+            {{ufo.as_p}}
                 {{pfo.as_p}}
 
-                <input type="submit" value="Register HERE">
+                <br>
+                <input type="submit" value="Register HERE" id="one">
+
 
         </form>
     </center>
