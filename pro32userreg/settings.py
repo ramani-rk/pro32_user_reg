@@ -119,10 +119,36 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+#-----------------------------------------------------------------------#
+# To Access the Media Files...
 MEDIA_URL = 'media/'
 MEDIA_ROOT= os.path.join (BASE_DIR,'media')
+
+# To Send the Mail to the User
+
+#/HOST Name for the Server/
+EMAIL_HOST='smtp.gmail.com'
+
+#/HOST Default Mail... This only send the Mail to Registered User/
+EMAIL_HOST_USER='ramanikanthsasi@gmail.com'
+
+#/APP Password (after the activating the 2-Step Verification)../
+EMAIL_HOST_PASSWORD='kmli oyfp igrp rkbn'
+
+#Server Types
+
+#/Transfer Layer Security (Port Number is 587)/
+EMAIL_USE_TLS=True
+
+#/Secure Socket Layer (Port Number is 465 )/
+EMAIL_USE_SSL=False
+EMAIL_PORT=587
+
+#-----------------------------------------------------------------------#
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
