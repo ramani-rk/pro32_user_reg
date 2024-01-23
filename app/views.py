@@ -4,8 +4,10 @@ from django.shortcuts import render
 
 
 from app.forms import *
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
+from django.contrib.auth import authenticate,login
 from django.core.mail import send_mail
+from django.urls import reverse
 
 def registration (request):
     ufo=UserForm()
@@ -19,7 +21,7 @@ def registration (request):
         pfd=ProfileForm(request.POST,request.FILES)
 
 
-# To convert Non-Modified Function Data object into Modified Function Data object 
+# To convert Non-Modified Function Data object into Modified Function Data object (2)
         if ufd.is_valid() and pfd.is_valid():
             MUFDO=ufd.save(commit=False)
             pw=ufd.cleaned_data['password']
@@ -32,7 +34,7 @@ def registration (request):
 
 #-----------------------------------------------------------------------#
 
-# Sending the Registration Mail to User
+# Sending the Registration Mail to User (3)
 
             send_mail(
                 #/Subject/
@@ -60,3 +62,35 @@ def registration (request):
         else:
             return HttpResponse('Invalid data')
     return render (request,'registration.html',d)
+
+#-----------------------------------------------------------------------#
+# Home Page
+
+def home(request):
+    if request.session.get('username'):
+        username=request.session.get('username')
+        d={'username' : username}
+        return render(request,'home.html',d)
+
+    return render (request,'home.html')
+
+
+#-----------------------------------------------------------------------#
+# Login
+
+def user_login(request):
+    if request.method=='POST':
+        username=request.POST['un']
+        password=request.POST['pw']
+        AUO=authenticate(username=username,password=password)
+        
+        if AUO and AUO.is_active:
+            login(request,AUO)
+            request.session['username']=username
+            return HttpResponseRedirect(reverse('home'))
+        else :
+            return HttpResponse('Invalid Credentials')
+    
+    return render(request,'user_login.html')
+
+

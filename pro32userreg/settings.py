@@ -120,11 +120,11 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 #-----------------------------------------------------------------------#
-# To Access the Media Files...
+#To Access the Media Files (2)...
 MEDIA_URL = 'media/'
 MEDIA_ROOT= os.path.join (BASE_DIR,'media')
 
-# To Send the Mail to the User
+# To Send the Mail to the User (3)
 
 #/HOST Name for the Server/
 EMAIL_HOST='smtp.gmail.com'
@@ -135,7 +135,7 @@ EMAIL_HOST_USER='ramanikanthsasi@gmail.com'
 #/APP Password (after the activating the 2-Step Verification)../
 EMAIL_HOST_PASSWORD='kmli oyfp igrp rkbn'
 
-#Server Types
+#Server Types (3)
 
 #/Transfer Layer Security (Port Number is 587)/
 EMAIL_USE_TLS=True
